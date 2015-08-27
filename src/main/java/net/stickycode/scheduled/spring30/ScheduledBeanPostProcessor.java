@@ -14,11 +14,11 @@ package net.stickycode.scheduled.spring30;
 
 import javax.inject.Inject;
 
-import net.stickycode.scheduled.ScheduledBeanProcessor;
-import net.stickycode.stereotype.StickyComponent;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
+
+import net.stickycode.scheduled.ScheduledBeanProcessor;
+import net.stickycode.stereotype.StickyComponent;
 
 @StickyComponent
 public class ScheduledBeanPostProcessor
@@ -28,10 +28,11 @@ public class ScheduledBeanPostProcessor
   private ScheduledBeanProcessor processor;
 
   @Override
-  public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+  public boolean postProcessAfterInstantiation(Object bean, String beanName)
+      throws BeansException {
     if (processor.isSchedulable(bean.getClass()))
       processor.process(bean);
-    
+
     return true;
   }
 
